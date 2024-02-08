@@ -1,0 +1,9 @@
+apiVersion: skaffold/v4beta9
+kind: Config
+metadata:
+  name: crd
+manifests:
+  rawYaml:
+    - k8s/install/hetzner-failover-api-policy-crd.yaml
+deploy:
+  kubectl:  {}

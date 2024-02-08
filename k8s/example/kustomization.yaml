@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: hetzner-fip-system
+
+resources:
+- common-gateway-failoverip.yaml
+- commands-rbac.yaml
+
+secretGenerator:
+  - name: hetzner-failoverip-controller
+    options:
+      disableNameSuffixHash: true
+    literals:
+      - username=changeme
+      - password=changeme

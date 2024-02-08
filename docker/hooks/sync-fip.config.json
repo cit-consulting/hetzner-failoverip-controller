@@ -1,0 +1,29 @@
+{
+  "configVersion": "v1",
+  "kubernetes": [
+    {
+      "name": "failoverip-policy",
+      "apiVersion": "hetzner.citc.dev/v1",
+      "kind": "FailoverIpPolicy",
+      "executeHookOnEvent": [
+        "Added",
+        "Modified"
+      ],
+      "allowFailure": true
+    }
+  ],
+  "schedule": [
+    {
+      "name": "sync IP",
+      "crontab": "*/2 * * * *",
+      "includeSnapshotsFrom": [
+        "failoverip-policy"
+      ],
+      "allowFailure": true
+    }
+  ],
+  "settings": {
+    "executionMinInterval": "60s",
+    "executionBurst": 2
+  }
+}

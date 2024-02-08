@@ -1,0 +1,20 @@
+apiVersion: skaffold/v4beta9
+kind: Config
+requires:
+  - path: install-crd.skaffold.yaml
+build:
+  artifacts:
+    - image: ghcr.io/cit-consulting/hetzner-failoverip-controller
+      context: docker
+  local:
+    push: false
+    useDockerCLI: true
+    useBuildkit: false
+manifests:
+  kustomize:
+    paths:
+      - k8s/install
+      - k8s/example
+deploy:
+  tolerateFailuresUntilDeadline: true
+  kubectl:  {}

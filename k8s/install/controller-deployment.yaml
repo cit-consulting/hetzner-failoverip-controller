@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: hetzner-failoverip-controller
+    app.kubernetes.io/component: controller
+    control-plane: controller
+  name: hetzner-failoverip-controller
+  namespace: hetzner-fip-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: hetzner-failoverip-controller
+      app.kubernetes.io/component: controller
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: hetzner-failoverip-controller
+        app.kubernetes.io/component: controller
+    spec:
+      containers:
+        - name: controller
+          env:
+            - name: RUNTIME_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: ROBOT_API_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: hetzner-failoverip-controller
+                  key: username
+            - name: ROBOT_API_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: hetzner-failoverip-controller
+                  key: password
+          image: ghcr.io/cit-consulting/hetzner-failoverip-controller
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 200m
+              memory: 50Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            seccompProfile:
+              type: RuntimeDefault
+          livenessProbe:
+            httpGet:
+              port: 9115
+              path: /
+              scheme: HTTP
+      nodeSelector:
+        kubernetes.io/os: linux
+      priorityClassName: system-cluster-critical
+      serviceAccountName: hetzner-failoverip-controller
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+      terminationGracePeriodSeconds: 10
