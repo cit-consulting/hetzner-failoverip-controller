@@ -1,9 +1,12 @@
 # Hetzner Failover IP Controller
 
-Ops TODOs:
-- liveness probe
-- metrics
+Simple Kubernetes operator that routes Hetzner Failover IP (bare metal only) to desired node. This operator **dot not
+provide** IPAM nor IP to network device assigment, so it is compatible with any possible IP management solution (
+MetalLB, KubeVIP, Cilium LB and so on).
 
+## Usage
+
+See `k8s/example`.
 
 ## Development
 
