@@ -37,7 +37,7 @@ function process_resource() {
       return 0
   fi
 
-  currentFailoverStateFile=${TMPDIR%/}/$run_timestamp
+  currentFailoverStateFile=${TMPDIR%/}/fip/$run_timestamp
   if [ -f "$currentFailoverStateFile" ]; then
       echo "Reuse failover state from $currentFailoverStateFile"
   else

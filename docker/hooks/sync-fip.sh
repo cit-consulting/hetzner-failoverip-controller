@@ -3,6 +3,7 @@
 source common/process-resource.sh
 
 if [[ $1 == "--config" ]] ; then
+  mkdir "${TMPDIR%/}/fip"
   cat sync-fip.config.json
 else
   type=$(jq -r '.[0].type' "${BINDING_CONTEXT_PATH}")
@@ -27,6 +28,8 @@ else
       process_resource "$failoverIpCommand" "$targetServerIp" "$dryRun" "$resourceName"
     done
   fi
+
+  rm -f "${TMPDIR%/}"/fip/*
 
 fi
 
