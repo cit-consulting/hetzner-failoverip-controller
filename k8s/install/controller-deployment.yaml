@@ -40,7 +40,7 @@ spec:
                 secretKeyRef:
                   name: hetzner-failoverip-controller
                   key: password
-          image: ghcr.io/cit-consulting/hetzner-failoverip-controller:0.1
+          image: ghcr.io/cit-consulting/hetzner-failoverip-controller:0.2
           imagePullPolicy: IfNotPresent
           resources:
             limits:
