@@ -4,7 +4,7 @@ metadata:
   name: common-gateway
 spec:
   getFailoverIpCommand: "net=$(echo 100);echo ${net}.0.0.1"
-#  getFailoverIpCommand: "kubectl get svc/cilium-gateway-common -n gateway-system -o jsonpath='{.status.loadBalancer.ingress[*].ip}'"
+  # getFailoverIpCommand: "kubectl get svc/cilium-gateway-common -n gateway-system -o=jsonpath={.status.loadBalancer.ingress[*].ip}"
   getTargetServerMainIpCommand: "echo 200.5.0.10"
-#  getTargetServerMainIpCommand: "kubectl get lease cilium-l2announce-gateway-system-cilium-gateway-common -n kube-system -o=jsonpath='{.spec.internalIp}'"
+  # getTargetServerMainIpCommand: "kubectl get node $(kubectl get lease cilium-l2announce-gateway-system-cilium-gateway-common -n kube-system -o=jsonpath={.spec.holderIdentity}) -o=jsonpath={.status.addresses[0].address}"
   dryRun: true

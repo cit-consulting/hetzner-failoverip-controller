@@ -4,9 +4,12 @@ kind: ClusterRole
 metadata:
   name: cr-hetzner-failoverip-controller
 rules:
-- apiGroups: ["hetzner.citc.dev"]
-  resources: ["failoverippolicies"]
-  verbs: ["get", "watch", "list"]
+  - apiGroups: [ "hetzner.citc.dev" ]
+    resources: [ "failoverippolicies" ]
+    verbs: [ "get", "watch", "list" ]
+  - apiGroups: [ "" ]
+    resources: [ "services", "namespaces" ]
+    verbs: [ "get" ]
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
