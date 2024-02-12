@@ -47,8 +47,15 @@ spec:
             requests:
               cpu: 50m
               memory: 50Mi
+          volumeMounts:
+            - name: temp
+              mountPath: /tmp
+            - name: shell-operator-run
+              mountPath: /var/run/shell-operator
           securityContext:
             allowPrivilegeEscalation: false
+            runAsUser: 1000
+            readOnlyRootFilesystem: true
             capabilities:
               drop:
                 - ALL
@@ -68,3 +75,10 @@ spec:
           operator: Exists
           effect: NoSchedule
       terminationGracePeriodSeconds: 10
+      volumes:
+        - name: temp
+          emptyDir:
+            sizeLimit: 100M
+        - name: shell-operator-run
+          emptyDir:
+            sizeLimit: 10M
