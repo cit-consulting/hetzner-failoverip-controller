@@ -6,7 +6,7 @@ function process_resource() {
   dryRun="$3"
   resourceName="$4"
   echo "Processing resource $resourceName"
-  failoverIp=$($failoverIpCommand)
+  failoverIp=$(bash -c "$failoverIpCommand")
   if [[ $? -ne 0 ]]; then
     echo "$1 failed for $resourceName"
     return 1
@@ -19,7 +19,7 @@ function process_resource() {
     fi
   fi
 
-  targetServerIp=$($targetServerIpCommand)
+  targetServerIp=$(bash -c "$targetServerIpCommand")
   if [[ $? -ne 0 ]]; then
     echo "$targetServerIpCommand failed for $resourceName"
     return 3
