@@ -1,11 +1,11 @@
-FROM ghcr.io/flant/shell-operator:v1.4.5
+FROM ghcr.io/flant/shell-operator:v1.4.6
 
 RUN apk --no-cache add curl
 
 RUN adduser -S controller
 
 RUN chown -R controller "/hooks" &  \
-    mkdir "/var/run/shell-operator" &  \
+    mkdir /var/run/shell-operator &  \
     chown -R controller "/var/run/shell-operator"
 
 USER controller
