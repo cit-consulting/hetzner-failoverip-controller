@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source common/process-resource.sh
+source lib/process-resource.sh
 
 if [[ $1 == "--config" ]] ; then
   mkdir "${TMPDIR%/}/fip"
