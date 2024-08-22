@@ -16,6 +16,6 @@ Run Skaffold:
 
 Manual image build:
 
-`docker build docker --label "git-commit=$(git rev-parse HEAD)" --tag ghcr.io/cit-consulting/hetzner-failoverip-controller:0.3`
+`docker build docker --label "git-commit=$(git rev-parse HEAD)" --tag ghcr.io/cit-consulting/hetzner-failoverip-controller:0.4`
 
 This operator implementation is based on Flant Shell Operator https://github.com/flant/shell-operator .
