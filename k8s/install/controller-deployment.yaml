@@ -40,15 +40,17 @@ spec:
                 secretKeyRef:
                   name: hetzner-failoverip-controller
                   key: password
+            - name: GOMEMLIMIT
+              value: 32MiB
           image: ghcr.io/cit-consulting/hetzner-failoverip-controller:0.4
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              cpu: 200m
-              memory: 50Mi
+              cpu: 100m
+              memory: 32Mi
             requests:
-              cpu: 50m
-              memory: 50Mi
+              cpu: 20m
+              memory: 16Mi
           volumeMounts:
             - name: temp
               mountPath: /tmp
