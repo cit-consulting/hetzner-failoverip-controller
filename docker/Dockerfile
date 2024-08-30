@@ -1,4 +1,4 @@
-FROM ghcr.io/flant/shell-operator:v1.4.10
+FROM ghcr.io/flant/shell-operator:v1.4.11
 
 RUN apk --no-cache add curl
 
