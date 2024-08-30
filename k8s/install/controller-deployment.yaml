@@ -42,7 +42,7 @@ spec:
                   key: password
             - name: GOMEMLIMIT
               value: 32MiB
-          image: ghcr.io/cit-consulting/hetzner-failoverip-controller:0.4
+          image: ghcr.io/cit-consulting/hetzner-failoverip-controller:0.5
           imagePullPolicy: IfNotPresent
           resources:
             limits:
