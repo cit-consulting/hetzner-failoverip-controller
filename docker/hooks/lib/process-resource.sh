@@ -49,6 +49,7 @@ function process_resource() {
     fi
   fi
   currentFailoverTarget=$(jq -r ".[] | select(.failover.ip==\"${failoverIp}\").failover.active_server_ip" "$currentFailoverStateFile")
+  rm "$currentFailoverStateFile"
   echo "$currentFailoverTarget"
   if [ -z "$currentFailoverTarget" ]; then
       echo "Failover IP $failoverIp not available on current account"
