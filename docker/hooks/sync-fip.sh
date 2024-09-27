@@ -4,7 +4,7 @@ source lib/process-resource.sh
 
 if [[ $1 == "--config" ]] ; then
   mkdir "${TMPDIR%/}/fip"
-  cat sync-fip.config.json
+  cat lib/sync-fip.config.json
 else
   type=$(jq -r '.[0].type' "${BINDING_CONTEXT_PATH}")
 
