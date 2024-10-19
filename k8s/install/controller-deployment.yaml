@@ -48,7 +48,7 @@ spec:
               valueFrom:
                 resourceFieldRef:
                   resource: limits.cpu
-          image: ghcr.io/cit-consulting/hetzner-failoverip-controller:0.6
+          image: ghcr.io/cit-consulting/hetzner-failoverip-controller:0.7
           imagePullPolicy: IfNotPresent
           resources:
             limits:
