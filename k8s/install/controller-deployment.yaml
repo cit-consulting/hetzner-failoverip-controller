@@ -41,9 +41,7 @@ spec:
                   name: hetzner-failoverip-controller
                   key: password
             - name: GOMEMLIMIT
-              valueFrom:
-                resourceFieldRef:
-                  resource: limits.memory
+              value: 40MiB
             - name: GOMAXPROCS
               valueFrom:
                 resourceFieldRef:
@@ -53,10 +51,10 @@ spec:
           resources:
             limits:
               cpu: 300m
-              memory: 32Mi
+              memory: 50Mi
             requests:
               cpu: 50m
-              memory: 32Mi
+              memory: 50Mi
           volumeMounts:
             - name: temp
               mountPath: /tmp
