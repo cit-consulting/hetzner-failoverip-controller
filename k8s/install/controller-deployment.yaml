@@ -52,10 +52,10 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              cpu: 100m
+              cpu: 300m
               memory: 32Mi
             requests:
-              cpu: 20m
+              cpu: 50m
               memory: 32Mi
           volumeMounts:
             - name: temp
