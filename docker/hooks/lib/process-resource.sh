@@ -42,7 +42,7 @@ function process_resource() {
       echo "Reuse failover state from $currentFailoverStateFile"
   else
     echo "Fetch actual failover state into $currentFailoverStateFile."
-    curl -f -u "$ROBOT_API_USERNAME:$ROBOT_API_PASSWORD" https://robot-ws.your-server.de/failover > "$currentFailoverStateFile"
+    curl -sS -f -u "$ROBOT_API_USERNAME:$ROBOT_API_PASSWORD" https://robot-ws.your-server.de/failover > "$currentFailoverStateFile"
     if [[ $? -ne 0 ]]; then
       echo "FATAL: unable to fetch current failover state from Robot API."
       exit 1
@@ -61,7 +61,7 @@ function process_resource() {
     echo "Failover IP $failoverIp needs to be routed to $targetServerIp instead of current $currentFailoverTarget"
   fi
 
-  curl -f -u "$ROBOT_API_USERNAME:$ROBOT_API_PASSWORD" https://robot-ws.your-server.de/failover/"$failoverIp" -d active_server_ip="$targetServerIp"
+  curl -sS -f -u "$ROBOT_API_USERNAME:$ROBOT_API_PASSWORD" https://robot-ws.your-server.de/failover/"$failoverIp" -d active_server_ip="$targetServerIp"
   if [[ $? -ne 0 ]]; then
     echo "Resource $resourceName processing failed"
   else
