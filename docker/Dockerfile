@@ -1,6 +1,6 @@
-FROM ghcr.io/flant/shell-operator:v1.5.3
+FROM ghcr.io/flant/shell-operator:v1.12.4
 
-RUN apk --no-cache add curl
+RUN apk --no-cache add jq
 
 RUN adduser -S controller
 
